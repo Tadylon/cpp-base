@@ -22,7 +22,8 @@ add_executable(Main
     # coroutine/demo/pro.cpp
     # coroutine/cpp23/generate.cpp
     # coroutine/cpp23/elements_of.cpp
-    coroutine/base/scratch.cpp
+    # coroutine/base/scratch.cpp
+    zlib/zlib.cpp
 )
 
 # add_executable(cilent 
@@ -39,11 +40,11 @@ add_executable(Main
 #     include/socket/socket.cpp   # <--- 指向你的 socket.cpp 路径
 # )
 
-find_package(ZLIB REQUIRED)
+# find_package(ZLIB REQUIRED)
 
 target_include_directories(Main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 # target_include_directories(cilent PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 # target_include_directories(server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # target_link_libraries(server PRIVATE yazi_socket)
-target_link_libraries(Main PRIVATE ZLIB::ZLIB)
+# target_link_libraries(Main PRIVATE ZLIB::ZLIB)

@@ -4,8 +4,8 @@
 #include<thread>
 #include<chrono>
 #include<future>
-#include <exception>
-#include <stdexcept>
+#include<exception>
+#include<stdexcept>
 
 int task(int number)
 {

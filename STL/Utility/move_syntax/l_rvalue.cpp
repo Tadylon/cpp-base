@@ -30,6 +30,7 @@ int main()
     int* p = &a;     // 合法：可以对左值 'a' 取地址
     a = 20;          // 合法：左值可以放在等号左侧
     SetValue(20);
+    SetValue(std::move(3234));
 
     const int b = 5; // 'b' 是一个常量左值
     // b = 10;       // 非法：b 是常量
@@ -41,6 +42,6 @@ int main()
     PringName(lastName);
     std::string fullName = firstName + " " + lastName;
     PringName(firstName + " " + lastName);
-    PringName(fullName);
+    PringName(std::move(fullName));
     return 0;
 }

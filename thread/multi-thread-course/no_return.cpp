@@ -5,7 +5,7 @@
 #include<chrono>
 #include<future>
 #include<fstream>
-
+#include <cstdlib>
 
 void write_file(std::string filename, std::string content)
 {

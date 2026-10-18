@@ -11,7 +11,8 @@ int main()
 {
     std::unique_ptr<int> ptr1 = std::make_unique<int>(10);
     // assert(std::unique_ptr<int> ptr2 = ptr1);          // 错误！unique_ptr不可拷贝
-    std::unique_ptr<int> ptr3 = std::move(ptr1); // 正确！所有权转移，ptr1变为nullptr
+    // std::unique_ptr<int> ptr3 = std::move(ptr1); // 正确！所有权转移，ptr1变为nullptr
+    auto ptr3 = std::move(ptr1); // 正确！所有权转移，ptr1变为nullptr
 
     std::vector<std::string> src = {"a", "b", "c"};
     std::vector<std::string> dst;

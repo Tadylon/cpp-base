@@ -2,6 +2,8 @@
 #include <array>
 #include <iostream>
 #include <vector>
+#include <type_traits>
+
 
 #include "print_obj.h"
 #include "standard_time.h"
@@ -9,7 +11,7 @@
 constexpr double PI = 3.1415926;
 constexpr int MAX_SIZE = 1024;
 
-constexpr int square(int x) { return x * x; }
+constexpr int square(auto x) { return x * x; }
 
 int common_square(int x) {
     return x * x;

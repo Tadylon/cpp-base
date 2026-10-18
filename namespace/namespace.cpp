@@ -4,7 +4,7 @@ namespace MyNameSpace {
     int x = 10;
 
 }
-using namespace MyNameSpace;
+// using namespace MyNameSpace;
 
 
 int main(){

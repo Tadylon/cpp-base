@@ -25,22 +25,25 @@ add_executable(Main
     coroutine/base/scratch.cpp
 )
 
-add_executable(cilent 
-    # web/socket/cilent.cpp
-    web/socket/clinet_pro.cpp
-)
+# add_executable(cilent 
+#     # web/socket/cilent.cpp
+#     web/socket/clinet_pro.cpp
+# )
 
-add_executable(server
-    # web/socket/serve.cpp
-    web/socket/server2.cpp
-)
+# add_executable(server
+#     # web/socket/serve.cpp
+#     web/socket/server2.cpp
+# )
 
-add_library(yazi_socket STATIC
-    include/socket/socket.cpp   # <--- 指向你的 socket.cpp 路径
-)
+# add_library(yazi_socket STATIC
+#     include/socket/socket.cpp   # <--- 指向你的 socket.cpp 路径
+# )
+
+find_package(ZLIB REQUIRED)
 
 target_include_directories(Main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-target_include_directories(cilent PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-target_include_directories(server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+# target_include_directories(cilent PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+# target_include_directories(server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-target_link_libraries(server PRIVATE yazi_socket)
+# target_link_libraries(server PRIVATE yazi_socket)
+target_link_libraries(Main PRIVATE ZLIB::ZLIB)

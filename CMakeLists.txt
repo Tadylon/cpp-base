@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.20)
 # set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "0e5b6991-d74f-4b3d-a41c-cf096e0b2508")
 
 project(Main CXX)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(Main
@@ -17,7 +17,12 @@ add_executable(Main
     # STL/Container/container/define.cpp
     # performance/cache/struct_cache_test.cpp
     # performance/cache/matrix_cache_test.cpp
-    error/stdexcept.cpp
+    # error/stdexcept.cpp
+    # coroutine/demo/generate.cpp
+    # coroutine/demo/pro.cpp
+    # coroutine/cpp23/generate.cpp
+    # coroutine/cpp23/elements_of.cpp
+    coroutine/base/scratch.cpp
 )
 
 add_executable(cilent 

@@ -18,12 +18,14 @@ add_executable(Main
     # performance/cache/struct_cache_test.cpp
     # performance/cache/matrix_cache_test.cpp
     # error/stdexcept.cpp
-    # coroutine/demo/generate.cpp
+    # coroutine/no_value/simple_generate.cpp
+    # coroutine/withvalue/value.cpp
     # coroutine/demo/pro.cpp
     # coroutine/cpp23/generate.cpp
     # coroutine/cpp23/elements_of.cpp
     # coroutine/base/scratch.cpp
-    zlib/zlib.cpp
+    # zlib/zlib.cpp
+    key_words/c_extern.cpp
 )
 
 # add_executable(cilent 

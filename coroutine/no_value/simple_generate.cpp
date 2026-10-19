@@ -2,7 +2,9 @@
 #include <coroutine>
 
 // 1. 协程的返回类型（外部调用者持有的“遥控器”）
-struct SimpleGenerator {
+class SimpleGenerator {
+
+public:
     // 2. 编译器要求必须名为 promise_type 的内嵌结构体（协程内部的“大管家”）
     struct promise_type {
         int current_value = 0; // 用于保存协程每次产出的数据
@@ -15,7 +17,7 @@ struct SimpleGenerator {
         }
 
         // (B) 协程刚启动时：是否立即挂起？（suspend_always 表示先挂起，等外部唤醒才开始跑）
-        std::suspend_always initial_suspend() { return {}; }
+        std::suspend_always initial_suspend() noexcept { return {}; }
 
         // (C) 协程即将结束时：是否挂起？（必须挂起，以便外部安全检查结束状态并手动销毁资源）
         std::suspend_always final_suspend() noexcept { return {}; }
@@ -27,16 +29,20 @@ struct SimpleGenerator {
         }
 
         // (E) 处理没有返回值的 co_return（或函数自然执行到末尾）
-        void return_void() {}
+        void return_void() noexcept {}
 
         // (F) 异常处理
         void unhandled_exception() { std::exit(1); }
     };
-
+private:
     // 3. 协程句柄：底层指向堆上“协程帧”的指针，用来恢复或销毁协程
     std::coroutine_handle<promise_type> handle;
-
+    // explicit SimpleGenerator(std::coroutine_handle<promise_type> p): handle(p) {}
     explicit SimpleGenerator(std::coroutine_handle<promise_type> h) : handle(h) {}
+public:
+    SimpleGenerator(const SimpleGenerator&) = delete;
+    SimpleGenerator& operator=(const SimpleGenerator&) = delete;
+    SimpleGenerator(SimpleGenerator&& n) noexcept: handle(std::exchange(n.handle, {})) {};
 
     // 析构时必须手动销毁协程帧，防止内存泄漏
     ~SimpleGenerator() {
@@ -54,6 +60,8 @@ struct SimpleGenerator {
     int value() const {
         return handle.promise().current_value;
     }
+private:
+    int current_value;
 };
 
 // ================= 真正的协程函数 =================
@@ -70,6 +78,7 @@ SimpleGenerator count_to_three() {
 
     std::cout << "  [Inside the coroutine] Resumed again, preparing to finish\n";
     // 隐式执行 co_return;
+    co_return;
 }
 
 int main() {

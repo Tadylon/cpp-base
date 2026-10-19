@@ -1,9 +1,10 @@
 #include <iostream>
 #include <coroutine>
+#include <cstdint>
 
 // 自定义一个 Awaiter：模拟异步读取一个整数
 struct AsyncReadData {
-    int simulated_data;
+    int32_t simulated_data;
 
     // 1. 检查是否就绪：返回 false 强制触发挂起流程
     bool await_ready() const noexcept {
@@ -34,7 +35,9 @@ struct Task {
         std::suspend_never initial_suspend() { return {}; } // 创建后立即执行，不挂起
         std::suspend_never final_suspend() noexcept { return {}; }
         void return_void() {}
-        void unhandled_exception() {}
+        // void return_value() {}
+        void unhandled_exception() {};
+        // void return() {};
     };
 };
 

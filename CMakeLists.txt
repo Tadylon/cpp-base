@@ -1,11 +1,16 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.30)
 
 # set_target_properties(Main PROPERTIES CXX_MODULE_STD ON)
 # set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "0e5b6991-d74f-4b3d-a41c-cf096e0b2508")
-
+# set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "你的CMake版本对应的正确UUID")
+set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "451f2fe2-a8a2-47c3-bc32-94786d8fc91b")
 project(Main CXX)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_SCAN_FOR_MODULES ON)
+set(CMAKE_CXX_MODULE_STD ON)
+
+
 
 add_executable(Main
     # STL/Container/map/base_map.cpp
@@ -50,3 +55,5 @@ target_include_directories(Main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # target_link_libraries(server PRIVATE yazi_socket)
 # target_link_libraries(Main PRIVATE ZLIB::ZLIB)
+
+add_subdirectory(module)

@@ -3,3 +3,6 @@ Diagnostics:
 
 CompileFlags:
   Add: [-Wno-module-odr-violation]
+  CompilationDatabase: build/   # 指向 compile_commands.json 所在目录
+  Add:
+    - --experimental-modules-support

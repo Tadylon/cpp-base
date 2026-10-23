@@ -10,7 +10,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_SCAN_FOR_MODULES ON)
 set(CMAKE_CXX_MODULE_STD ON)
 
-
+option(LEARN_BUILD_EXAMPLES      "Build examples"    OFF)
+option(LEARN_BUILD_TESTS         "Build tests"       OFF)
+option(LEARN_BUILD_TOOLS         "Build tools"       OFF)
+option(LEARN_BUILD_MODULE        "Module build"      OFF)
+option(LEARN_BUILD_TEMPLATE      "Template build"    ON )
+option(LEARN_BUILD_ZLIB          "Zlib build"        OFF)
 
 add_executable(Main
     # STL/Container/map/base_map.cpp
@@ -33,27 +38,16 @@ add_executable(Main
     key_words/c_extern.cpp
 )
 
-# add_executable(cilent 
-#     # web/socket/cilent.cpp
-#     web/socket/clinet_pro.cpp
-# )
+target_include_directories(Main PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
-# add_executable(server
-#     # web/socket/serve.cpp
-#     web/socket/server2.cpp
-# )
-
-# add_library(yazi_socket STATIC
-#     include/socket/socket.cpp   # <--- 指向你的 socket.cpp 路径
-# )
-
-# find_package(ZLIB REQUIRED)
-
-target_include_directories(Main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-# target_include_directories(cilent PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-# target_include_directories(server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-
-# target_link_libraries(server PRIVATE yazi_socket)
-# target_link_libraries(Main PRIVATE ZLIB::ZLIB)
-
+if(LEARN_BUILD_MODULE)
 add_subdirectory(module)
+endif()
+
+if(LEARN_BUILD_TEMPLATE)
+add_subdirectory(template)
+endif()
+
+if(LEARN_BUILD_ZLIB)
+add_subdirectory(zlib)
+endif()

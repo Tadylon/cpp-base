@@ -8,6 +8,10 @@ project(Main CXX)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+if(MSVC)
+    add_compile_options(/utf-8)
+endif()
+
 
 option(LEARN_BUILD_EXAMPLES      "Build examples"    OFF)
 option(LEARN_BUILD_TESTS         "Build tests"       OFF)
@@ -15,6 +19,8 @@ option(LEARN_BUILD_TOOLS         "Build tools"       OFF)
 option(LEARN_BUILD_MODULE        "Module build"      OFF)
 option(LEARN_BUILD_TEMPLATE      "Template build"    ON )
 option(LEARN_BUILD_ZLIB          "Zlib build"        OFF)
+option(LEARN_BUILD_THREAD        "Thread build"      ON )
+option(LEARN_BUILD_COROUTINE     "Coroutine build"   ON )
 
 
 add_executable(Main
@@ -53,4 +59,12 @@ endif()
 
 if(LEARN_BUILD_ZLIB)
 add_subdirectory(zlib)
+endif()
+
+if(LEARN_BUILD_THREAD)
+add_subdirectory(thread)
+endif()
+
+if(LEARN_BUILD_COROUTINE)
+add_subdirectory(coroutine)
 endif()

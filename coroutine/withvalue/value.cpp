@@ -7,7 +7,12 @@
 #include <future>
 #include <memory>
 
+#ifdef WIN32
 #include <windows.h>
+#endif
+#ifdef __linux__
+#include <unistd.h>
+#endif
 
 class IntReader
 {
@@ -19,8 +24,13 @@ public:
 
     bool await_suspend(std::coroutine_handle<> handle)
     {
+#ifdef WIN32
         Sleep(1000);
+#endif
         // std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+#ifdef __linux__
+        sleep(1000);
+#endif
         value_ = 1;
 
         // handle.resume();

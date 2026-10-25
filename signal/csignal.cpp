@@ -2,6 +2,7 @@
 #include <csignal>
 #include <chrono>
 #include <thread>
+#include <atomic>
 
 #ifdef _WIN32
     #include <windows.h>

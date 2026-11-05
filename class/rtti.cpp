@@ -8,6 +8,8 @@ class Flyable                       // 能飞的
 public:
     virtual void takeoff() = 0;     // 起飞
     virtual void land() = 0;        // 降落
+
+    // ~Flyable(){}
 };
 
 

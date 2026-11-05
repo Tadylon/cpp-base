@@ -6,7 +6,7 @@
 void test01()
 {
 	std::ifstream ifs;
-	ifs.open("test.txt", std::ios::in);
+	ifs.open("a.txt", std::ios::in);
 
 	if (!ifs.is_open())
 	{

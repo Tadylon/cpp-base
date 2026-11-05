@@ -3,23 +3,26 @@
 #include <vector>
 #include <mutex>
 
-static int counter = 0;
+static int nomtx_counter = 0;
+static int withmtx_counter = 0;
+
 std::mutex mtx;
 
 void increase_counter_no_mutex() {
-    counter = 0;
-    for (int i = 0; i < 100000; ++i) {
-        ++counter; // 没有任何保护，多线程同时读写
+
+    for (int i = 0; i < 1'000'000; ++i) {
+        ++nomtx_counter; // 没有任何保护，多线程同时读写
     }
 }
 
 void increase_counter_with_mutex() {
-    counter = 0;
-    mtx.lock();
-    for (int i = 0; i < 100000; ++i) {
-        ++counter; // 没有任何保护，多线程同时读写
+
+    std::lock_guard<std::mutex> lock(mtx);
+    // mtx.lock();
+    for (int i = 0; i < 1'000'000; ++i) {
+        ++withmtx_counter; // 没有任何保护，多线程同时读写
     }
-    mtx.unlock();
+    // mtx.unlock();
 }
 
 void test_no_mutex() {
@@ -31,8 +34,9 @@ void test_no_mutex() {
     
     // 理论上应该是 1000000 (100万)
     // 但实际运行你会发现结果是一个随机的、小于 100 万的数字
-    std::cout << "Final counter: " << counter << std::endl; 
+    std::cout << "Final counter: " << nomtx_counter << std::endl; 
 }
+
 void test_with_mutex() {
     std::vector<std::thread> threads2;
     for (int i = 0; i < 10; ++i) {
@@ -41,7 +45,7 @@ void test_with_mutex() {
     for (auto& t : threads2) t.join();
 
     //这里输出出来的内容就应该是正常数值，因为加入了mutex
-    std::cout << "Final counter: " << counter << std::endl; 
+    std::cout << "Final counter: " << withmtx_counter << std::endl; 
 }
 
 

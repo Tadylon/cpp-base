@@ -1,13 +1,13 @@
 #include <iostream>
 #include <fstream>
-
+#include <iosfwd>
 // using namespace std;
 
 void test01()
 {
 	std::ofstream ofs;
-	ofs.open("test.txt", std::ios::out);
-
+	ofs.open("a.txt", std::ios::out | std::ios::app);
+    // std::fstream test;
 	ofs << "name   : zhangsan" << std::endl;
 	ofs << "gender : man" << std::endl;
 	ofs << "age    : 18" << std::endl;

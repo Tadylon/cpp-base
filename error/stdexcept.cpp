@@ -48,5 +48,9 @@ int main() {
     }
     
     std::cout << "the program is runing again !" << std::endl;
+    
+    auto return_msg = std::invalid_argument("something gets wrong !");
+    auto return_msg2 = std::logic_error("no ways !");
+
     return 0;
 }

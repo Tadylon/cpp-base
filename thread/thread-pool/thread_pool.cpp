@@ -80,6 +80,10 @@ public:
     // 禁止拷贝
     ThreadPool(const ThreadPool&) = delete;
     ThreadPool& operator=(const ThreadPool&) = delete;
+    ThreadPool(ThreadPool&&) = delete;
+    ThreadPool& operator=(ThreadPool&&) = delete;
+
+
 
 private:
     std::vector<std::thread> workers_;          // 工作线程集合
@@ -92,6 +96,6 @@ private:
 
 int main(int args, char* argv[])
 {
-    
+
     return 0;
 }

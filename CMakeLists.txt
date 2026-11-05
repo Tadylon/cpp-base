@@ -21,6 +21,8 @@ option(LEARN_BUILD_TEMPLATE      "Template build"    ON )
 option(LEARN_BUILD_ZLIB          "Zlib build"        OFF)
 option(LEARN_BUILD_THREAD        "Thread build"      ON )
 option(LEARN_BUILD_COROUTINE     "Coroutine build"   ON )
+option(LEARN_BUILD_FILE          "File      build"   ON )
+option(LEARN_BUILD_CONTAINER     "Container build"   ON )
 
 
 add_executable(Main
@@ -67,4 +69,12 @@ endif()
 
 if(LEARN_BUILD_COROUTINE)
 add_subdirectory(coroutine)
+endif()
+
+if(LEARN_BUILD_FILE)
+add_subdirectory(files)
+endif()
+
+if(LEARN_BUILD_CONTAINER)
+add_subdirectory(container)
 endif()

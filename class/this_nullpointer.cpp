@@ -10,7 +10,7 @@ public:
 	}
 
 	void ShowPerson() {
-		if (this == NULL) {
+		if (this == nullptr) {
 			return;
 		}
 		cout << mAge << endl;
@@ -22,7 +22,7 @@ public:
 
 void test01()
 {
-	Person * p = NULL;
+	Person * p = nullptr;
 	p->ShowClassName(); //空指针，可以调用成员函数
 	p->ShowPerson();  //但是如果成员函数中用到了this指针，就不可以了
 }

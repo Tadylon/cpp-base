@@ -12,7 +12,7 @@ int main()
         FILE* txt = std::fopen("a.txt", "r");
     
         if (txt == nullptr) {
-            std::cout << "打开文件失败！" << std::endl;
+            std::cout << "fail to open this file !" << std::endl;
             return -1;
         }
         

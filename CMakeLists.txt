@@ -18,11 +18,12 @@ option(LEARN_BUILD_TESTS         "Build tests"       OFF)
 option(LEARN_BUILD_TOOLS         "Build tools"       OFF)
 option(LEARN_BUILD_MODULE        "Module build"      OFF)
 option(LEARN_BUILD_TEMPLATE      "Template build"    ON )
-option(LEARN_BUILD_ZLIB          "Zlib build"        OFF)
+option(LEARN_BUILD_ZLIB          "Zlib build"        ON )
 option(LEARN_BUILD_THREAD        "Thread build"      ON )
 option(LEARN_BUILD_COROUTINE     "Coroutine build"   ON )
 option(LEARN_BUILD_FILE          "File      build"   ON )
 option(LEARN_BUILD_CONTAINER     "Container build"   ON )
+option(LEARN_BUILD_KEYWORDS      "Key words build"   ON )
 
 
 add_executable(Main
@@ -78,3 +79,8 @@ endif()
 if(LEARN_BUILD_CONTAINER)
 add_subdirectory(container)
 endif()
+
+if(LEARN_BUILD_KEYWORDS)
+add_subdirectory(key_words)
+endif()
+

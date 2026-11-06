@@ -22,8 +22,8 @@ struct MyAllocator : public std::allocator<T> {
 
 using Vec = std::vector<int, MyAllocator<int>>;
 
-int main()
-{
+// int main()
+// {
 
-    return 0;
-}
+//     return 0;
+// }

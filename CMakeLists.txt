@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.25)
 
 # set_target_properties(Main PROPERTIES CXX_MODULE_STD ON)
 # set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "0e5b6991-d74f-4b3d-a41c-cf096e0b2508")
@@ -24,6 +24,12 @@ option(LEARN_BUILD_COROUTINE     "Coroutine build"   ON )
 option(LEARN_BUILD_FILE          "File      build"   ON )
 option(LEARN_BUILD_CONTAINER     "Container build"   ON )
 option(LEARN_BUILD_KEYWORDS      "Key words build"   ON )
+
+
+# Linux dir build
+
+option(LEARN_BUILD_WEB           "Web       build"   ON )
+option(LEARN_BUILD_LINUXDIR      "Linux dir build"   ON )
 
 
 add_executable(Main
@@ -84,3 +90,7 @@ if(LEARN_BUILD_KEYWORDS)
 add_subdirectory(key_words)
 endif()
 
+
+if(LEARN_BUILD_LINUXDIR)
+add_subdirectory(linuxdir)
+endif()

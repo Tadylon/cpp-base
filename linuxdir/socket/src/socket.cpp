@@ -1,10 +1,12 @@
-#include "socket.h"
-#include <cstdio>
-#include <cstdarg>
-#include <unistd.h>
+#include "yazi/socket.h"
 
-namespace yazi {
-namespace socket {
+#include <cstdio>
+#include <unistd.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+namespace yazi::socket{
 
 // ============ Socket 实现 ============
 Socket::Socket() {
@@ -76,58 +78,5 @@ void Socket::close() {
     }
 }
 
-// ============ Logger 实现 ============
-Logger::~Logger() {
-    if (m_file) {
-        fclose(m_file);
-        m_file = nullptr;
-    }
-}
 
-bool Logger::open(const char* filename) {
-    if (m_file) {
-        fclose(m_file);
-        m_file = nullptr;
-    }
-    m_file = fopen(filename, "a");   // 追加模式
-    if (!m_file) {
-        perror("fopen");
-        return false;
-    }
-    return true;
-}
-
-void Logger::log(const char* fmt, ...) {
-    if (!m_file) return;
-    va_list args;
-    va_start(args, fmt);
-    vfprintf(m_file, fmt, args);
-    fprintf(m_file, "\n");
-    fflush(m_file);   // 确保立即写入
-    va_end(args);
-}
-
-void Logger::error(const char* fmt, ...) {
-    if (!m_file) return;
-    va_list args;
-    va_start(args, fmt);
-    fprintf(m_file, "[ERROR] ");
-    vfprintf(m_file, fmt, args);
-    fprintf(m_file, "\n");
-    fflush(m_file);
-    va_end(args);
-}
-
-void Logger::info(const char* fmt, ...) {
-    if (!m_file) return;
-    va_list args;
-    va_start(args, fmt);
-    fprintf(m_file, "[INFO] ");
-    vfprintf(m_file, fmt, args);
-    fprintf(m_file, "\n");
-    fflush(m_file);
-    va_end(args);
-}
-
-} // namespace socket
-} // namespace yazi
+} // namespace yazi::socket

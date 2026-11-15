@@ -91,11 +91,6 @@ add_subdirectory(key_words)
 endif()
 
 
-
-if(LEARN_BUILD_WEB)
-add_subdirectory(web)
-endif()
-
 if(LEARN_BUILD_LINUXDIR)
 add_subdirectory(linuxdir)
 endif()

@@ -1,12 +1,13 @@
 #include <iostream>
 
-#include "socket/socket.h"
+#include "yazi/logger.h"
+#include "yazi/socket.h"
 using namespace yazi::socket;
-
+using namespace yazi::log;
 int main()
 {
-    Logger::instance()->open("./../server.log");
-    Logger::instance()->info("Server started...");
+    auto log = Logger("./../server.log");
+    log.info("Server started...");
     // 1. 创建 socket
     Socket server;
 
@@ -22,7 +23,7 @@ int main()
         int connfd = server.accept();
         if (connfd < 0)
         {
-            Logger::instance()->error("Failed to accept client connection");
+            log.error("Failed to accept client connection");
             return 1;
         }
 
@@ -34,11 +35,11 @@ int main()
         size_t len = client.recv(buf, sizeof(buf));
         if (len < 0)
         {
-            Logger::instance()->error("Failed to receive data from client");
+            log.error("Failed to receive data from client");
             return 1;
         }
         printf("recv: connfd=%d msg=%s\n", connfd, buf);
-        Logger::instance()->info("Received message from client: %s", buf);
+        log.info("Received message from client: %s", buf);
         // 6. 向客户端发送数据
         client.send(buf, len);
     }

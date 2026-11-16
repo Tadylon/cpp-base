@@ -92,5 +92,7 @@ endif()
 
 
 if(LEARN_BUILD_LINUXDIR)
+if(LINUX)
 add_subdirectory(linuxdir)
+endif()
 endif()
